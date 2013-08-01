@@ -7,4 +7,11 @@ class User < ActiveRecord::Base
 
   # - Validations
   validates :email, :name, presence: true
+
+ #-   Callbacks
+before_create :normalize_name
+
+ def normalize_name
+    self.name = self.name.downcase.titleize
+  end
 end
